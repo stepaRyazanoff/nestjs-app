@@ -1,0 +1,39 @@
+name: backend
+services:
+  postgres:
+    container_name: postgres_container
+    environment:
+      DB_HOST: localhost
+      DB_DB: mydatabase
+      DB_PASSWORD: mypassword
+      DB_USER: myuser
+    image: postgres:latest
+    networks:
+      - default
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+  redis:
+    container_name: redis_container
+    image: redis:latest
+    networks:
+      - default
+    ports:
+      - mode: ingress
+        target: 6379
+        published: "6379"
+        protocol: tcp
+    restart: always
+networks:
+  default:
+    name: backend_default
+volumes:
+  postgres_data:
+    name: backend_postgres_data
