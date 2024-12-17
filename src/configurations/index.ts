@@ -6,5 +6,7 @@ export default function () {
     db_name: process.env.DB_NAME,
     db_password: process.env.DB_PASSWORD,
     db_user: process.env.DB_USER,
+    jwt_secret: process.env.JWT_SECRET,
+    jwt_expire: process.env.JWT_EXPIRE,
   };
 }
