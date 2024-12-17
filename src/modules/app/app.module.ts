@@ -3,12 +3,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from '../users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import configurations from '../../configurations';
 import { SequelizeModule } from '@nestjs/sequelize';
+import configurations from '../../configurations';
+import { AuthModule } from '../auth/auth.module';
+import { TokenModule } from '../token/token.module';
 
 @Module({
   imports: [
     UsersModule,
+    AuthModule,
+    TokenModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configurations],
