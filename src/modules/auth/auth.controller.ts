@@ -9,14 +9,14 @@ import { ApiResponse } from '@nestjs/swagger';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @ApiResponse({ status: 201, type: CreateUserDTO })
   @Post('register')
+  @ApiResponse({ status: 201, type: CreateUserDTO })
   register(@Body() dto: CreateUserDTO): Promise<CreateUserDTO> {
     return this.authService.registerUser(dto);
   }
 
-  @ApiResponse({ status: 200, type: AuthUserResponse })
   @Post('login')
+  @ApiResponse({ status: 200, type: AuthUserResponse })
   login(@Body() dto: LoginUserDTO): Promise<AuthUserResponse> {
     return this.authService.loginUser(dto);
   }
