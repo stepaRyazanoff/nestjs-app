@@ -16,8 +16,8 @@ import { AuthenticatedRequest } from '../../common/types';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Patch()
+  @UseGuards(JwtAuthGuard)
   @ApiResponse({ status: 200, type: UpdateUserDTO })
   updateUser(
     @Body() dto: UpdateUserDTO,
@@ -27,8 +27,8 @@ export class UsersController {
     return this.usersService.updateUser(email, dto);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete()
+  @UseGuards(JwtAuthGuard)
   @ApiResponse({ status: 204 })
   deleteUser(@Req() request: AuthenticatedRequest): Promise<boolean> {
     const { email } = request.user;
