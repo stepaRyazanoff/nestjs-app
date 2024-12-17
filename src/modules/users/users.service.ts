@@ -11,7 +11,7 @@ export class UsersService {
     @InjectModel(User) private readonly usersRepository: typeof User,
   ) {}
 
-  async checkUserByEmail(email: string): Promise<CreateUserDTO> {
+  async checkUserByEmail(email: string): Promise<User> {
     try {
       return this.usersRepository.findOne({ where: { email } });
     } catch (error) {
@@ -38,7 +38,7 @@ export class UsersService {
     }
   }
 
-  async publicUser(email: string): Promise<CreateUserDTO> {
+  async publicUser(email: string): Promise<User> {
     try {
       return this.usersRepository.findOne({
         where: { email },
